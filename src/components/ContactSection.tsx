@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import emailjs from "emailjs-com";
+import AnimatedGlobe from "@/components/AnimatedGlobe";
 
 const ContactSection = () => {
   const [form, setForm] = useState({
@@ -41,8 +42,8 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4">
-      <div className="container mx-auto max-w-4xl">
+    <section id="contact" className="relative py-28 px-4 overflow-hidden">
+      <div className="container mx-auto max-w-4xl relative z-10">
 
         {/* HEADER */}
         <motion.div
@@ -113,32 +114,30 @@ const ContactSection = () => {
 
           {/* SOCIAL LINKS */}
           <div className="flex justify-center gap-4 mt-8">
-            <a
-              href="https://github.com/dhikondagopi"
-              target="_blank"
-              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition"
-            >
+            <a href="https://github.com/dhikondagopi" target="_blank"
+              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 transition">
               <Github size={18} />
             </a>
 
-            <a
-              href="https://linkedin.com/in/YOUR-LINKEDIN"
-              target="_blank"
-              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition"
-            >
+            <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank"
+              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 transition">
               <Linkedin size={18} />
             </a>
 
-            <a
-              href="mailto:dhikondagopi@gmail.com"
-              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition"
-            >
+            <a href="mailto:dhikondagopi@gmail.com"
+              className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center hover:border-purple-500 transition">
               <Mail size={18} />
             </a>
           </div>
 
         </div>
       </div>
+
+      {/* ⭐ GLOBE POSITION */}
+      <div className="absolute right-10 bottom-0 opacity-60 hidden lg:block z-0">
+        <AnimatedGlobe />
+      </div>
+
     </section>
   );
 };
