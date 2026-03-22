@@ -20,7 +20,7 @@ const ContactSection = () => {
     emailjs
       .send(
         "service_a5mxs2t",
-        "template_dknkthj",
+        "template_h5c30lp",
         {
           name: form.name,
           email: form.email,
