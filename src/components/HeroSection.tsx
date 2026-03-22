@@ -78,7 +78,7 @@ const HeroSection = () => {
           className="mb-10"
         >
           <a
-            href="/Resume.pdf"
+            href="/Gopi_D_Resume.pdf"
             download
             className="btn-primary inline-flex items-center gap-2"
           >
