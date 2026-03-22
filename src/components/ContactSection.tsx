@@ -152,9 +152,9 @@ const ContactSection = () => {
       </div>
 
       {/* ⭐ GLOBE FIXED POSITION */}
-      <div className="absolute right-5 md:right-10 bottom-5 opacity-50 hidden lg:block pointer-events-none">
-        <AnimatedGlobe />
-      </div>
+     <div className="absolute right-[-120px] bottom-[-60px] opacity-40 hidden xl:block pointer-events-none">
+      <AnimatedGlobe />
+     </div>
 
     </section>
   );
