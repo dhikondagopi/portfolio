@@ -10,21 +10,21 @@ const AnimatedGlobe = () => {
     if (!ctx) return;
 
     let animationId: number;
-    const size = 320;
+    const size = 300;   // ⭐ slightly smaller → smoother
     canvas.width = size;
     canvas.height = size;
 
     const cx = size / 2;
     const cy = size / 2;
-    const radius = 110;
+    const radius = 100;
 
     const animate = () => {
-      const t = Date.now() * 0.0006;
+      const t = Date.now() * 0.0007;
       ctx.clearRect(0, 0, size, size);
 
-      // simple glow
-      const glow = ctx.createRadialGradient(cx, cy, radius * 0.5, cx, cy, radius * 1.3);
-      glow.addColorStop(0, "hsla(250,85%,65%,0.12)");
+      // glow
+      const glow = ctx.createRadialGradient(cx, cy, radius * 0.6, cx, cy, radius * 1.4);
+      glow.addColorStop(0, "hsla(250,85%,65%,0.15)");
       glow.addColorStop(1, "transparent");
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, size, size);
@@ -32,17 +32,25 @@ const AnimatedGlobe = () => {
       // sphere
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = "hsla(250,85%,65%,0.25)";
+      ctx.strokeStyle = "hsla(250,85%,65%,0.35)";
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // rotating longitude lines (only 3)
+      // rotating lines
       for (let i = 0; i < 3; i++) {
-        const angle = t + i;
+        const angle = t + i * 1.5;
         ctx.beginPath();
-        ctx.ellipse(cx, cy, radius * Math.abs(Math.cos(angle)), radius, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = "hsla(200,90%,60%,0.18)";
-        ctx.lineWidth = 0.7;
+        ctx.ellipse(
+          cx,
+          cy,
+          radius * Math.abs(Math.cos(angle)),
+          radius,
+          0,
+          0,
+          Math.PI * 2
+        );
+        ctx.strokeStyle = "hsla(200,90%,60%,0.25)";
+        ctx.lineWidth = 0.8;
         ctx.stroke();
       }
 
@@ -54,8 +62,11 @@ const AnimatedGlobe = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center w-full min-h-[320px]">
-      <canvas ref={canvasRef} className="w-[280px] h-[280px] md:w-[320px] md:h-[320px]" />
+    <div className="relative z-20 flex items-center justify-center">
+      <canvas
+        ref={canvasRef}
+        className="w-[240px] h-[240px] md:w-[300px] md:h-[300px]"
+      />
     </div>
   );
 };
