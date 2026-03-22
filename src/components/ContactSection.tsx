@@ -42,31 +42,27 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-4 overflow-hidden">
-      
-      <div className="container mx-auto max-w-4xl relative z-10">
+    <section id="contact" className="relative py-28 px-6 overflow-hidden">
 
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <span className="text-xs tracking-widest text-purple-400">
-            04 — CONTACT
-          </span>
+      {/* HEADER */}
+      <div className="text-center mb-16">
+        <span className="text-xs tracking-widest text-purple-400">
+          04 — CONTACT
+        </span>
 
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Let’s Connect
-          </h2>
+        <h2 className="text-4xl md:text-5xl font-bold mt-3 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
 
-          <p className="text-white/60 mt-4 max-w-xl mx-auto">
-            Feel free to reach out for collaborations, internships, or opportunities.
-          </p>
-        </motion.div>
+        <p className="text-white/60 mt-4 max-w-xl mx-auto">
+          Feel free to reach out for collaborations, internships, or opportunities.
+        </p>
+      </div>
 
-        {/* FORM CARD */}
+      {/* ⭐ GRID LAYOUT */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+        {/* LEFT → CONTACT FORM */}
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 shadow-[0_0_30px_rgba(139,92,246,0.08)]">
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -118,8 +114,8 @@ const ContactSection = () => {
             )}
           </form>
 
-          {/* SOCIAL LINKS */}
-          <div className="flex justify-center gap-6 mt-8">
+          {/* SOCIAL ICONS */}
+          <div className="flex justify-center gap-6 mt-10">
 
             <a
               href="https://github.com/dhikondagopi"
@@ -131,7 +127,7 @@ const ContactSection = () => {
             </a>
 
             <a
-              href="https://linkedin.com/in/YOUR-LINKEDIN"
+              href="https://linkedin.com/in/gopidhikonda1"
               target="_blank"
               className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center 
               bg-white/[0.03] hover:border-purple-500 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition"
@@ -140,7 +136,7 @@ const ContactSection = () => {
             </a>
 
             <a
-              href="mailto:dhikondagopi@gmail.com"
+              href="mailto:dhikondagopinaidu@gmail.com"
               className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center 
               bg-white/[0.03] hover:border-purple-500 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition"
             >
@@ -149,12 +145,20 @@ const ContactSection = () => {
 
           </div>
         </div>
+
+        {/* RIGHT → GLOBE */}
+        <div className="hidden md:flex justify-center relative">
+          <div className="opacity-60 scale-110">
+            <AnimatedGlobe />
+          </div>
+        </div>
+
       </div>
 
-      {/* ⭐ GLOBE FIXED POSITION */}
-     <div className="absolute right-[-120px] bottom-[-60px] opacity-40 hidden xl:block pointer-events-none">
-      <AnimatedGlobe />
-     </div>
+      {/* ⭐ HALF GLOBE BACKGROUND (EXTRA STYLE) */}
+      <div className="absolute right-[-180px] bottom-[-120px] opacity-30 pointer-events-none hidden xl:block">
+        <AnimatedGlobe />
+      </div>
 
     </section>
   );
