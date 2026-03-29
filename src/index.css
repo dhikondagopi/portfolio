@@ -67,8 +67,6 @@
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(250 85% 68% / 0.5);
   }
-}
-}
 
 @layer components {
   .glass {
