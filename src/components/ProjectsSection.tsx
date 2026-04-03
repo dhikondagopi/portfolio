@@ -39,6 +39,8 @@ const projects = [
     tech: ["React", "Node", "MongoDB", "Express"],
     gradient: "from-green-400 to-sky-400",
     image: projectFoodbridge,
+    github: "https://github.com/dhikondagopi/food-bridge",
+     live: "https://foodbridgge.netlify.app/"
   },
 ];
 
