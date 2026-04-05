@@ -34,7 +34,7 @@ const ContactSection = () => {
           email: form.email,
           message: form.message,
         },
-        "REPLACE_WITH_YOUR_PUBLIC_KEY"  // 🔥 IMPORTANT: replace this
+        "7sWaB9O5OOi6hHW99" // 🔥 IMPORTANT: replace this
       )
       .then((response) => {
         console.log("SUCCESS:", response);
