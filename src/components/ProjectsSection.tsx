@@ -11,36 +11,42 @@ const projects = [
   {
     title: "InterviewX",
     description:
-      "AI-powered interview preparation platform with real-time feedback and performance analytics.",
+      "AI-powered interview preparation platform providing real-time feedback, performance analytics, and personalized improvement suggestions.",
     tech: ["React", "Node.js", "AI/ML", "MongoDB"],
     gradient: "from-purple-500 to-indigo-500",
     image: projectInterviewX,
+    github: "https://github.com/dhikondagopi/interviewx",
+    live: "#",
   },
   {
     title: "UpLink",
     description:
-      "Real-time communication platform enabling language learners to connect via chat and video.",
+      "Real-time communication platform enabling users to connect via chat and video for language learning and collaboration.",
     tech: ["React", "Express", "Socket.io", "MongoDB"],
     gradient: "from-indigo-500 to-pink-500",
     image: projectUplink,
+    github: "https://github.com/dhikondagopi/uplink",
+    live: "#",
   },
   {
     title: "ThreatGuard AI",
     description:
-      "Cybersecurity threat detection system analyzing logs using machine learning algorithms.",
+      "Cybersecurity threat detection system that analyzes logs using machine learning algorithms to identify anomalies and potential attacks.",
     tech: ["React", "Python", "TensorFlow", "MongoDB"],
     gradient: "from-pink-500 to-orange-400",
     image: projectThreatguard,
+    github: "https://github.com/dhikondagopi/threatguard",
+    live: "#",
   },
   {
     title: "Food Bridge",
     description:
-      "Platform connecting food donors with NGOs to reduce waste and improve social impact.",
-    tech: ["React", "Node", "MongoDB", "Express"],
+      "Full-stack MERN application connecting food donors with NGOs and volunteers, featuring real-time food posting, request management, and role-based authentication to reduce food waste.",
+    tech: ["React", "Node.js", "MongoDB", "Express", "JWT"],
     gradient: "from-green-400 to-sky-400",
     image: projectFoodbridge,
     github: "https://github.com/dhikondagopi/food-bridge",
-     live: "https://foodbridgge.netlify.app/"
+    live: "https://foodbridgge.netlify.app/",
   },
 ];
 
@@ -122,15 +128,29 @@ const ProjectsSection = () => {
 
                 {/* BUTTONS */}
                 <div className="flex gap-3 mt-6">
-                  <button className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition">
-                    <Github size={14} />
-                    Code
-                  </button>
+                  {/* GitHub */}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition">
+                      <Github size={14} />
+                      Code
+                    </button>
+                  </a>
 
-                  <button className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow hover:scale-105 transition">
-                    <ExternalLink size={14} />
-                    Live
-                  </button>
+                  {/* Live */}
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow hover:scale-105 hover:shadow-lg hover:shadow-pink-500/30 transition">
+                      <ExternalLink size={14} />
+                      🚀 Live
+                    </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
