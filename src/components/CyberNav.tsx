@@ -1,23 +1,35 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import { Menu, X } from "lucide-react";
 
-const navItems = ["About", "Projects", "Experience", "Skills", "Contact"];
+const navItems = [
+  "About",
+  "Projects",
+  "Experience",
+  "Certifications",
+  "Internships",
+  "Skills",
+  "Contact",
+];
 
 const CyberNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById(id.toLowerCase())
+      ?.scrollIntoView({ behavior: "smooth" });
+
     setIsOpen(false);
   };
 
@@ -31,60 +43,65 @@ const CyberNav = () => {
       }`}
     >
       <div className="mx-4 glass rounded-2xl">
-        <div className="container mx-auto px-6 py-3 flex items-center justify-between">
-          <button onClick={() => scrollTo("hero")} className="font-display text-base font-bold">
+        <div className="container mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => scrollTo("hero")}
+            className="font-display text-base font-bold shrink-0"
+            aria-label="Go to hero section"
+          >
             <span className="gradient-text">Gopi D</span>
-            
           </button>
 
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item)}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-xl hover:bg-muted/30"
+                className="px-3 xl:px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-xl hover:bg-muted/30"
               >
                 {item}
               </button>
             ))}
-            <button
-              onClick={toggleTheme}
-              className="ml-2 w-9 h-9 rounded-xl flex items-center justify-center bg-muted/30 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          {/* Mobile menu button */}
+          <div className="flex items-center gap-2 lg:hidden">
             <button
-              onClick={toggleTheme}
-              className="w-9 h-9 rounded-xl flex items-center justify-center bg-muted/30 text-muted-foreground"
-              aria-label="Toggle theme"
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="text-foreground w-10 h-10 rounded-xl border border-border/40 bg-muted/20 flex items-center justify-center"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
-              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-            <button onClick={() => setIsOpen(!isOpen)} className="text-foreground">
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
 
+        {/* Mobile dropdown */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t border-border/30 px-6 pb-4"
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden border-t border-border/30 px-6 pb-4"
           >
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(item)}
-                className="block w-full text-left py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item}
-              </button>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 pt-3">
+              {navItems.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollTo(item)}
+                  className="block w-full text-left py-2.5 px-3 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </div>

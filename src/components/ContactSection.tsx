@@ -1,190 +1,127 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Github, Linkedin, Mail } from "lucide-react";
-import emailjs from "emailjs-com";
-import AnimatedGlobe from "@/components/AnimatedGlobe";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Sparkles,
+  ExternalLink,
+  Send,
+} from "lucide-react";
+
+const contactLinks = [
+  {
+    icon: Mail,
+    title: "Email",
+    value: "dhikondagopinaidu@gmail.com",
+    href: "mailto:dhikondagopinaidu@gmail.com",
+  },
+  {
+    icon: Github,
+    title: "GitHub",
+    value: "github.com/dhikondagopi",
+    href: "https://github.com/dhikondagopi",
+  },
+  {
+    icon: Linkedin,
+    title: "LinkedIn",
+    value: "linkedin.com/in/gopidhikonda1",
+    href: "https://linkedin.com/in/gopidhikonda1",
+  },
+];
 
 const ContactSection = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // ✅ Basic validation
-    if (!form.name || !form.email || !form.message) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    setLoading(true);
-
-    emailjs
-      .send(
-        "service_a5mxs2t",       // ✅ your service ID
-        "template_h5c30lp",     // ✅ your template ID
-        {
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        },
-        "_ew97C_mdIVQRgqQ4" // 🔥 IMPORTANT: replace this
-      )
-      .then((response) => {
-        console.log("SUCCESS:", response);
-        setLoading(false);
-        setSent(true);
-
-        setTimeout(() => setSent(false), 4000);
-
-        setForm({
-          name: "",
-          email: "",
-          message: ""
-        });
-      })
-      .catch((error) => {
-        console.error("FAILED:", error);
-        setLoading(false);
-        alert("Failed to send message ❌");
-      });
-  };
-
   return (
-    <section id="contact" className="relative py-28 px-6 overflow-hidden">
-
-      {/* HEADER */}
-      <div className="text-center mb-16">
-        <span className="text-xs tracking-widest text-purple-400">
-          04 — CONTACT
-        </span>
-
-        <h2 className="text-4xl md:text-5xl font-bold mt-3 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-          Get In Touch
-        </h2>
-
-        <p className="text-white/60 mt-4 max-w-xl mx-auto">
-          Feel free to reach out for collaborations, internships, or opportunities.
-        </p>
+    <section id="contact" className="relative py-20 md:py-28 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
       </div>
 
-      {/* GRID */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-        {/* FORM */}
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 shadow-[0_0_30px_rgba(139,92,246,0.08)]">
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-
-            {/* NAME */}
-            <input
-              type="text"
-              name="name"   // ✅ IMPORTANT
-              placeholder="Your Full Name"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-black/30 border border-white/10 
-              focus:border-purple-500 outline-none text-white placeholder:text-white/40"
-            />
-
-            {/* EMAIL */}
-            <input
-              type="email"
-              name="email"   // ✅ IMPORTANT
-              placeholder="Your Email Address"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-black/30 border border-white/10 
-              focus:border-purple-500 outline-none text-white placeholder:text-white/40"
-            />
-
-            {/* MESSAGE */}
-            <textarea
-              name="message"   // ✅ IMPORTANT
-              placeholder="Write your message..."
-              rows={5}
-              required
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-5 py-4 rounded-xl bg-black/30 border border-white/10 
-              focus:border-purple-500 outline-none text-white placeholder:text-white/40 resize-none"
-            />
-
-            {/* BUTTON */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 
-              text-white font-medium tracking-wide hover:scale-[1.02] transition 
-              shadow-[0_0_20px_rgba(236,72,153,0.4)]"
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-
-            {/* SUCCESS MESSAGE */}
-            {sent && (
-              <p className="text-green-400 text-center mt-2">
-                ✅ Message sent successfully!
-              </p>
-            )}
-          </form>
-
-          {/* SOCIAL ICONS */}
-          <div className="flex justify-center gap-6 mt-10">
-
-            <a
-              href="https://github.com/dhikondagopi"
-              target="_blank"
-              rel="noreferrer"
-              className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center 
-              bg-white/[0.03] hover:border-purple-500 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition"
-            >
-              <Github className="text-white/80" size={20} />
-            </a>
-
-            <a
-              href="https://linkedin.com/in/gopidhikonda1"
-              target="_blank"
-              rel="noreferrer"
-              className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center 
-              bg-white/[0.03] hover:border-purple-500 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition"
-            >
-              <Linkedin className="text-white/80" size={20} />
-            </a>
-
-            <a
-              href="mailto:dhikondagopinaidu@gmail.com"
-              className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center 
-              bg-white/[0.03] hover:border-purple-500 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition"
-            >
-              <Mail className="text-white/80" size={20} />
-            </a>
-
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-14"
+        >
+          <div className="section-badge mb-5">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>06 / Contact</span>
           </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground mb-5">
+            Let&apos;s <span className="gradient-text">Connect</span>
+          </h2>
+
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+            Feel free to reach out for internships, collaborations, hackathons,
+            projects, or developer opportunities.
+          </p>
+        </motion.div>
+
+        {/* Contact cards */}
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          {contactLinks.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <motion.a
+                key={item.title}
+                href={item.href}
+                target={item.title === "Email" ? "_self" : "_blank"}
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                className="glass-hover p-6 rounded-2xl group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-display font-semibold text-foreground mb-1">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm text-muted-foreground truncate">
+                      {item.value}
+                    </p>
+                  </div>
+
+                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                </div>
+              </motion.a>
+            );
+          })}
         </div>
 
-        {/* GLOBE */}
-        <div className="hidden md:flex justify-center relative">
-          <div className="opacity-60 scale-110">
-            <AnimatedGlobe />
-          </div>
-        </div>
+        {/* Bottom note */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-3xl mx-auto mt-12 glass p-6 sm:p-8 rounded-2xl text-center"
+        >
+          <Send className="w-8 h-8 text-primary mx-auto mb-4" />
 
+          <h3 className="text-xl sm:text-2xl font-display font-semibold text-foreground mb-3">
+            Open to Opportunities
+          </h3>
+
+          <p className="text-muted-foreground leading-relaxed">
+            I am actively improving my skills in MERN stack, cybersecurity,
+            AI/ML, cloud, and real-world project development. I am open to
+            internships, hackathons, and developer opportunities.
+          </p>
+        </motion.div>
       </div>
-
-      {/* BACKGROUND */}
-      <div className="absolute right-[-180px] bottom-[-120px] opacity-30 pointer-events-none hidden xl:block">
-        <AnimatedGlobe />
-      </div>
-
     </section>
   );
 };
