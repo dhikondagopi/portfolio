@@ -19,7 +19,7 @@ const submittedProjects = [
     category: "Hackathon Project",
     year: "2026",
     status: "Submitted / Built",
-    liveDemo: "https://your-cafeflow-live-demo-link.com",
+    liveDemo: "hhttps://cafeflowpos.vercel.app/",
     github: "https://github.com/dhikondagopi",
     description:
       "A real-time restaurant POS system inspired by Odoo POS with cashier terminal, admin dashboard, kitchen display, table management, payments, receipts, and reports.",
